@@ -14,3 +14,6 @@ class SummarizeRequest(BaseModel):
 def summarize(request: SummarizeRequest):
     summary = summarize_text(request.text)
     return {"summary": summary}
+
+
+
