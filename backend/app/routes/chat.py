@@ -1,7 +1,7 @@
-# app/routes/chat.py
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from app.services.gpt_service import chat_advice
+from app.services.db_service import log_user_action
 
 router = APIRouter()
 
@@ -13,9 +13,9 @@ class ChatRequest(BaseModel):
 def chat_advisor(request: ChatRequest):
     if not request.user_id.strip() or not request.question.strip():
         raise HTTPException(status_code=400, detail="user_id and question cannot be empty")
-    
     try:
         answer = chat_advice(request.user_id, request.question)
+        log_user_action(request.user_id, f"Asked: {request.question}")
         return {"answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"GPT-5 API error: {str(e)}")
