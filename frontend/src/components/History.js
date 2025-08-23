@@ -1,28 +1,49 @@
-import React, { useState } from "react";
-import { getHistory } from "../api/api";
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "../api/api";
 
 function History() {
-  const [userId] = useState("user123");
+  const userId = "user123"; // fixed user id
   const [history, setHistory] = useState([]);
 
-  const fetchHistory = async () => {
-    const res = await getHistory(userId);
-    setHistory(res.history || []);
+  const fetchHistory = useCallback(async () => {
+    try {
+      const res = await axios.get(`/history/?user_id=${userId}`);
+      setHistory(res.data.history);
+    } catch (err) {
+      console.error(err);
+    }
+  }, [userId]);
+
+  const clearHistory = async () => {
+    if (!window.confirm("Are you sure you want to clear your history?")) return;
+    try {
+      await axios.delete(`/history/clear?user_id=${userId}`);
+      setHistory([]); // clear frontend
+    } catch (err) {
+      console.error(err);
+    }
   };
 
+  useEffect(() => {
+    fetchHistory();
+  }, [fetchHistory]);
+
   return (
-    <div>
-      <h2>User History</h2>
-      <button onClick={fetchHistory}>Load History</button>
+    <div className="history-container">
+      <h2>Your History</h2>
+      <button className="clear-btn" onClick={clearHistory}>
+        Clear History
+      </button>
       <ul>
-        {history.length > 0 ? (
-          history.map((h, i) => (
-            <li key={i}>
-              {h.timestamp}: {h.action}
+        {history.length ? (
+          history.map((item, idx) => (
+            <li key={idx}>
+              {item.action} -{" "}
+              {new Date(item.created_at || item.timestamp).toLocaleString()}
             </li>
           ))
         ) : (
-          <p>No history yet</p>
+          <li>No history yet.</li>
         )}
       </ul>
     </div>

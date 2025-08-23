@@ -8,22 +8,26 @@ function Summarize() {
 
   const handleSummarize = async () => {
     if (!text.trim()) return;
-    const res = await summarize(userId, text);
-    setSummary(res.summary || "⚠️ No summary returned");
+    try {
+      const res = await summarize(userId, text);
+      setSummary(res.summary);
+    } catch (err) {
+      console.error("Error summarizing:", err);
+    }
   };
 
   return (
-    <div>
-      <h2>Summarize Text</h2>
+    <div className="card">
+      <h2>📝 Summarize Consent Text</h2>
       <textarea
+        className="chat-input"
+        placeholder="Paste text to summarize..."
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Enter text to summarize..."
       />
-      <br />
-      <button onClick={handleSummarize}>Summarize</button>
+      <button className="btn" onClick={handleSummarize}>Summarize</button>
       {summary && (
-        <div>
+        <div className="chat-response">
           <h3>Summary:</h3>
           <p>{summary}</p>
         </div>

@@ -4,25 +4,31 @@ import { savePreference } from "../api/api";
 function Preferences() {
   const [userId] = useState("user123");
   const [preference, setPreference] = useState("");
-  const [status, setStatus] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSave = async () => {
     if (!preference.trim()) return;
-    await savePreference(userId, preference);
-    setStatus("✅ Preference saved!");
+    try {
+      await savePreference(userId, preference);
+      setMessage("✅ Preference saved successfully!");
+      setPreference("");
+    } catch (err) {
+      console.error("Error saving preference:", err);
+    }
   };
 
   return (
-    <div>
-      <h2>User Preferences</h2>
+    <div className="card">
+      <h2>⚙️ Manage Preferences</h2>
       <input
+        className="input-field"
         type="text"
+        placeholder="Enter preference"
         value={preference}
         onChange={(e) => setPreference(e.target.value)}
-        placeholder="Enter your preference..."
       />
-      <button onClick={handleSave}>Save</button>
-      {status && <p>{status}</p>}
+      <button className="btn" onClick={handleSave}>Save</button>
+      {message && <p>{message}</p>}
     </div>
   );
 }

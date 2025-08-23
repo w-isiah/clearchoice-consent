@@ -1,38 +1,178 @@
-.App {
-  text-align: center;
+/* Global styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Container for all content */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Card style for each component */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  padding: 25px;
+  margin-bottom: 30px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Headings inside cards */
+.card h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  color: #0b3d91;
+  margin-bottom: 15px;
+}
+
+/* Buttons */
+.btn {
+  background: #0b3d91;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+  background: #08306b;
+  transform: translateY(-2px);
+}
+
+/* Inputs & Textareas */
+.input-field,
+.chat-input,
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  resize: vertical;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.input-field:focus,
+.chat-input:focus,
+textarea:focus {
+  border-color: #0b3d91;
+}
+
+/* Chat/Summarize Response Box */
+.chat-response {
+  margin-top: 15px;
+  padding: 15px;
+  background: #e6f0ff;
+  border-left: 4px solid #0b3d91;
+  border-radius: 8px;
+}
+
+/* Lists */
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+/* Small messages */
+p {
+  margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .btn {
+    width: 100%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+
+/* Navbar styles */
+.navbar {
+  background: #0b3d91;
+  color: #fff;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar-links a {
+  color: #fff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar-links a:hover {
+  color: #ffdd57;
+}
+
+.active-link {
+  text-decoration: underline;
+  color: #ffdd57;
+}
+
+
+.clear-btn {
+  background-color: #ff4d4f;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+
+.clear-btn:hover {
+  background-color: #ff7875;
+}
+
+.history-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.history-container li {
+  background: #f0f2f5;
+  padding: 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
 }
