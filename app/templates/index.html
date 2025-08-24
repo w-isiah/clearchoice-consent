@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consent Guardian</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-title">Consent Guardian</div>
+        <div class="navbar-links">
+            <a href="/chat">Chat</a>
+            <a href="/summarize">Summarize</a>
+            <a href="/preferences">Preferences</a>
+            <a href='/history'>History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Welcome to Consent Guardian</h2>
+        <div class="card-grid">
+            <a class="card" href="/chat">Chat</a>
+            <a class="card" href="/summarize">Summarize</a>
+            <a class="card" href="/preferences">Preferences</a>
+            <a class="card" href="/history">History</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,6 +1,4 @@
-fastapi
-uvicorn
-python-dotenv
-supabase
+Flask
+mysql-connector-python
 openai
-requests
+python-dotenv

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History - Consent Guardian</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-title">Consent Guardian</div>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/chat">Chat</a>
+            <a href="/summarize">Summarize</a>
+            <a href="/preferences">Preferences</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Your History</h2>
+        <button class="clear-btn" id="clear-btn">Clear History</button>
+        <ul id="history-list"></ul>
+    </div>
+
+    <script>
+        const list = document.getElementById('history-list');
+        const clearBtn = document.getElementById('clear-btn');
+        const userId = "user123";  // Replace with dynamic user ID if available
+
+        // Fetch history and render
+        const fetchHistory = async () => {
+            try {
+                const res = await fetch(`/history/api?user_id=${userId}`);
+                const data = await res.json();
+                if(data.history && data.history.length) {
+                    list.innerHTML = data.history.map(item => 
+                        `<li>
+                            <strong>${item.action}</strong> - ${new Date(item.timestamp).toLocaleString()} 
+                            (${item.model}, tokens: ${item.tokens_used}, success: ${item.success})
+                        </li>`
+                    ).join("");
+                } else {
+                    list.innerHTML = "<li>No history yet.</li>";
+                }
+            } catch (err) {
+                console.error("Error fetching history:", err);
+                list.innerHTML = "<li>Failed to load history.</li>";
+            }
+        }
+
+        // Clear history
+        const clearHistory = async () => {
+            if(!confirm("Are you sure you want to clear your history?")) return;
+            try {
+                await fetch(`/history/clear?user_id=${userId}`, { method: "DELETE" });
+                fetchHistory();
+            } catch (err) {
+                console.error("Error clearing history:", err);
+            }
+        }
+
+        clearBtn.addEventListener("click", clearHistory);
+
+        // Load history on page load
+        fetchHistory();
+    </script>
+</body>
+</html>

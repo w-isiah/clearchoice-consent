@@ -1,0 +1,215 @@
+/* ---------- General Reset & Body ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+body {
+    background-color: #f4f7f9;
+    line-height: 1.6;
+}
+
+/* ---------- Navbar ---------- */
+nav, .navbar {
+    background-color: #1a73e8;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav a, .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+nav a:hover, .navbar a:hover {
+    color: #ffdd57;
+}
+
+/* Navbar title */
+.navbar-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* ---------- Container ---------- */
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3 {
+    color: #1a73e8;
+    margin-bottom: 1rem;
+}
+
+/* ---------- Buttons ---------- */
+button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #1a73e8;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #1666c1;
+}
+
+button.clear-btn {
+    background-color: #e53935;
+}
+
+button.clear-btn:hover {
+    background-color: #b71c1c;
+}
+
+/* ---------- Forms & Inputs ---------- */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ---------- Cards / Grid Layout ---------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* ---------- Chat ---------- */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.chat-messages {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.chat-message {
+    margin-bottom: 0.75rem;
+}
+
+.chat-message.user {
+    text-align: right;
+    color: #333;
+}
+
+.chat-message.bot {
+    text-align: left;
+    color: #1a73e8;
+}
+
+/* ---------- Summarize ---------- */
+.summary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.summary-result {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ---------- Preferences ---------- */
+.preferences-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.preferences-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.preferences-list li {
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- History ---------- */
+.history-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.history-container ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.history-container li {
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    nav, .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav a, .navbar a {
+        margin: 0.5rem 0 0 0;
+    }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Preferences - Consent Guardian</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-title">Consent Guardian</div>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/chat">Chat</a>
+            <a href="/summarize">Summarize</a>
+            <a href="/history">History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Manage Your Preferences</h2>
+        <form id="preferences-form">
+            <input type="text" id="preference-input" placeholder="Enter a preference" required>
+            <button type="submit">Save Preference</button>
+        </form>
+
+        <ul class="preferences-list" id="preferences-list"></ul>
+    </div>
+
+    <script>
+        const form = document.getElementById('preferences-form');
+        const input = document.getElementById('preference-input');
+        const list = document.getElementById('preferences-list');
+
+        const fetchPreferences = async () => {
+            const res = await fetch(`/preferences?user_id=user123`);
+            const data = await res.json();
+            list.innerHTML = data.preferences.map(p => `<li>${p.preference}</li>`).join("");
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const preference = input.value;
+            if(!preference) return;
+
+            await fetch("/preferences", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ user_id: "user123", preference })
+            });
+
+            input.value = "";
+            fetchPreferences();
+        });
+
+        fetchPreferences();
+    </script>
+</body>
+</html>

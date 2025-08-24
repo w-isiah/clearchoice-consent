@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summarize - Consent Guardian</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-title">Consent Guardian</div>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/chat">Chat</a>
+            <a href="/preferences">Preferences</a>
+            <a href="/history">History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Summarize a Consent Text</h2>
+        <form id="summarize-form">
+            <textarea id="text-input" placeholder="Paste your consent text or privacy policy..." required></textarea>
+            <button type="submit">Summarize</button>
+        </form>
+
+        <div class="summary-container" id="summary-result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('summarize-form');
+        const input = document.getElementById('text-input');
+        const resultDiv = document.getElementById('summary-result');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const text = input.value;
+            if(!text) return;
+
+            const res = await fetch("/summarize", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ user_id: "user123", text })
+            });
+
+            const data = await res.json();
+            resultDiv.innerHTML = `<div class="summary-result">${data.summary}</div>`;
+        });
+    </script>
+</body>
+</html>
