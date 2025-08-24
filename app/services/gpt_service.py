@@ -4,7 +4,8 @@ import os
 from app.db_service import get_db_connection
 
 # 1. Check API key
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+#OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = '2b511a19c2694a3d90a0f86173d4a510'
 if not OPENAI_API_KEY:
     raise ValueError("❌ OPENAI_API_KEY is not set in environment variables.")
 
