@@ -132,15 +132,9 @@ clearchoice-consent/
 
 ## 🤝 Contributing
 
-We welcome contributions! To get started:
-
- Fork the repo
- Create a new feature branch (`git checkout -b feature-name`)
- Commit your changes (`git commit -m 'Add new feature'`)
- Push and create a Pull Request
 
 ---
 
 ## 📜 License
 
-MIT License © 2025 Consent Guardian Team
+isiahw © 2025 Consent Guardian Team
